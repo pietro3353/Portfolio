@@ -8,17 +8,14 @@
     <meta name="description"
         content="Analista especializado em análise de dados, Python e Power BI. Experiência em M&A, modelagem financeira e dashboards executivos." />
     <meta name="author" content="Pietro Lippolis" />
-    <!-- Google Fonts -->
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Configuração do Tailwind (Baseada em tailwind.config.ts) -->
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -103,7 +100,6 @@
         };
     </script>
 
-    <!-- Estilos CSS (Baseados em src/index.css e estilos customizados) -->
     <style type="text/tailwindcss">
         @layer base {
         :root {
@@ -220,6 +216,22 @@
         .prose h3 {
             @apply text-xl font-semibold mb-3 text-foreground;
         }
+        
+        /* Estilos para Image Lightbox */
+        #imageLightbox {
+            transition: opacity 0.3s ease;
+        }
+        #imageLightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #imageLightbox img {
+            transition: transform 0.3s ease;
+            transform: scale(0.9);
+        }
+        #imageLightbox.active img {
+            transform: scale(1);
+        }
       }
 
       /* Classes ShadCN UI recriadas com @apply */
@@ -273,11 +285,18 @@
           @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
         }
       }
+
+      /* Estilo Customizado para Alinhamento Fino da Imagem de Perfil */
+      @layer utilities {
+        .object-align-face {
+            object-position: center 15%; /* Ajustado para 15% para subir um pouco a visão */
+        }
+      }
     </style>
 </head>
 
 <body class="antialiased">
-    <!-- Header -->
+
     <header id="main-header"
         class="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-md border-b border-border z-50 transition-all">
         <nav class="container mx-auto px-4 py-4">
@@ -288,7 +307,6 @@
                     </h2>
                 </div>
 
-                <!-- Desktop Menu -->
                 <ul class="hidden md:flex items-center gap-8" id="desktop-menu">
                     <li>
                         <button data-section="inicio" onclick="scrollToSection('inicio')"
@@ -316,14 +334,13 @@
                     </li>
                 </ul>
 
-                <!-- Mobile Menu Button -->
                 <button class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
                     id="mobile-menu-toggle" aria-label="Toggle menu">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </nav>
-        <!-- Mobile Menu Panel -->
+
         <div id="mobile-menu" class="md:hidden fixed inset-0 top-[73px] bg-background/98 backdrop-blur-md z-40 hidden">
             <ul class="flex flex-col items-center justify-center gap-8 h-full">
                 <li>
@@ -355,7 +372,7 @@
     </header>
 
     <main>
-        <!-- Hero Section (Início) -->
+
         <section id="inicio"
             class="min-h-screen flex items-center pt-20 pb-16 bg-gradient-to-br from-background via-background to-primary/5">
             <div class="container mx-auto px-4">
@@ -385,16 +402,19 @@
                     </div>
                     <div class="flex justify-center">
                         <div
-                            class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-2xl">
-                            <i data-lucide="user" class="w-32 h-32 md:w-40 md:h-40 text-white"
-                                style="stroke-width: 1.5px;"></i>
+                            class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-2xl overflow-hidden">
+                            <!-- IMAGEM COM LINK GITHUB RAW E ALINHAMENTO CORRIGIDO -->
+                            <img src="https://raw.githubusercontent.com/pietro3353/Portfolio/main/WhatsApp%20Image%202025-12-18%20at%2014.42.13.jpeg"
+                                alt="Foto de perfil de Pietro Lippolis"
+                                class="w-full h-full object-cover object-align-face"
+                                onerror="this.onerror=null; this.src='https://placehold.co/320x320/e2e8f0/64748b?text=Imagem+de+Perfil+Nao+Carregada';">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section (Sobre) -->
+
         <section id="sobre" class="py-24 bg-card">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative pb-4">
@@ -409,7 +429,7 @@
                         desenvolvendo soluções de e dashboards estratégicos para tomada de decisão.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Item Sobre -->
+
                         <div
                             class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
                             <div class="flex-shrink-0">
@@ -424,7 +444,7 @@
                                 </p>
                             </div>
                         </div>
-                        <!-- Item Sobre -->
+
                         <div
                             class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
                             <div class="flex-shrink-0">
@@ -435,7 +455,7 @@
                                 <p class="text-muted-foreground">Graduação em Ciências Econômicas</p>
                             </div>
                         </div>
-                        <!-- Item Sobre -->
+
                         <div
                             class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
                             <div class="flex-shrink-0">
@@ -448,7 +468,7 @@
                                 <p class="text-muted-foreground">São Paulo, SP</p>
                             </div>
                         </div>
-                        <!-- Item Sobre -->
+
                         <div
                             class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
                             <div class="flex-shrink-0">
@@ -468,7 +488,7 @@
             </div>
         </section>
 
-        <!-- Projects Section (Projetos) -->
+
         <section id="projetos" class="py-24 bg-background">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative pb-4">
@@ -477,7 +497,7 @@
                         class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
                 </h2>
 
-                <!-- Filtros de Projeto - ATUALIZADO: Adicionado VBA e renomeado Power BI -->
+
                 <div class="flex justify-center gap-4 mt-12 mb-12 flex-wrap" id="project-filters">
                     <button data-filter="all" class="btn btn-default rounded-full filter-btn px-6 py-3 text-base">
                         Todos
@@ -493,9 +513,9 @@
                     </button>
                 </div>
 
-                <!-- Grelha de Projetos -->
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto" id="projects-grid">
-                    <!-- Projeto 1 -->
+
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="python" data-id="analise-performance-acoes">
                         <div class="flex items-center justify-between mb-4">
@@ -528,7 +548,7 @@
                         </div>
                     </div>
 
-                    <!-- Projeto 2 -->
+
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="python" data-id="dashboard-indicadores-ma">
                         <div class="flex items-center justify-between mb-4">
@@ -560,7 +580,7 @@
                         </div>
                     </div>
 
-                    <!-- Projeto 3 (Transcrição de Áudio) -->
+
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="python" data-id="automacao-relatorios-financeiros">
                         <div class="flex items-center justify-between mb-4">
@@ -592,7 +612,7 @@
                         </div>
                     </div>
 
-                    <!-- Projeto 4 (Árvore Genealógica de KPIs - VBA) -->
+
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="vba" data-id="dashboard-kpi-executivo">
                         <div class="flex items-center justify-between mb-4">
@@ -600,7 +620,7 @@
                                 class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
                                 📊
                             </div>
-                            <!-- Categoria do Badge -->
+
                             <span class="badge badge-secondary capitalize">VBA/Excel</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3 text-foreground">
@@ -625,7 +645,7 @@
                         </div>
                     </div>
 
-                    <!-- Projeto 5 (Questionários Dinâmicos) -->
+
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="powerbi" data-id="analise-ma-mercado">
                         <div class="flex items-center justify-between mb-4">
@@ -633,7 +653,7 @@
                                 class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
                                 📝
                             </div>
-                            <!-- Categoria do Badge ATUALIZADA -->
+
                             <span class="badge badge-secondary capitalize">Web / Scripting</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3 text-foreground">
@@ -657,7 +677,7 @@
                         </div>
                     </div>
 
-                    <!-- Projeto 6 (Dashboard de Monitoramento - ATUALIZADO) -->
+
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="powerbi" data-id="dashboard-performance-financeira">
                         <div class="flex items-center justify-between mb-4">
@@ -665,7 +685,7 @@
                                 class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
                                 📊
                             </div>
-                            <!-- Categoria do Badge -->
+
                             <span class="badge badge-secondary capitalize">Power BI / Looker</span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3 text-foreground">
@@ -692,7 +712,7 @@
             </div>
         </section>
 
-        <!-- Contact Section (Contato) -->
+
         <section id="contato" class="py-24 bg-background">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative pb-4">
@@ -702,7 +722,7 @@
                 </h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mt-12">
-                    <!-- Informações de Contato -->
+
                     <div>
                         <h3 class="text-2xl font-semibold mb-4">Vamos conversar!</h3>
                         <p class="text-muted-foreground mb-8">
@@ -745,7 +765,7 @@
                         </div>
                     </div>
 
-                    <!-- Formulário de Contato -->
+
                     <div class="card p-8 border-border shadow-lg">
                         <form id="contact-form" class="space-y-6">
                             <div>
@@ -782,7 +802,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+
     <footer class="bg-foreground text-white py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -810,13 +830,13 @@
         </div>
     </footer>
 
-    <!-- Project Detail Modal -->
+
     <div id="projectModalBackdrop" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm hidden"
         onclick="closeProjectModal()"></div>
     <div id="projectModal" class="fixed inset-0 z-[70] p-4 md:p-6 overflow-y-auto hidden">
         <div id="projectModalContent" class="card w-full max-w-5xl mx-auto my-8 opacity-0 translate-y-8"
             onclick="event.stopPropagation()">
-            <!-- Modal Header -->
+
             <div class="p-4 border-b border-border flex justify-between items-center">
                 <button class="btn btn-ghost" onclick="closeProjectModal()">
                     <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
@@ -827,48 +847,48 @@
                 </button>
             </div>
 
-            <!-- Modal Body -->
+
             <div class="p-4 md:p-8">
-                <!-- Project Header -->
+
                 <div class="mb-8 md:mb-12">
                     <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
                         <div id="modal-icon"
                             class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl shadow-lg flex-shrink-0">
-                            <!-- Icon goes here -->
+
                         </div>
                         <div class="flex-1">
                             <span id="modal-category" class="badge badge-default mb-2">
-                                <!-- Category -->
+
                             </span>
                             <h1 id="modal-title" class="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                                <!-- Title -->
+
                             </h1>
                             <p id="modal-shortDescription" class="text-lg md:text-xl text-muted-foreground">
-                                <!-- Short Description -->
+
                             </p>
                         </div>
                     </div>
-                    <!-- Project Links -->
+
                     <div class="flex gap-3 mt-6" id="modal-links">
-                        <!-- Links (GitHub/Demo) will be injected here -->
+
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Main Content -->
+
                     <div class="lg:col-span-2 space-y-8">
-                        <!-- Full Description -->
+
                         <div class="card p-6 md:p-8">
                             <h2 class="text-2xl font-semibold mb-4 text-foreground">Sobre o Projeto</h2>
                             <div id="modal-fullDescription" class="prose prose-lg max-w-none text-muted-foreground">
-                                <!-- Full Description (HTML) -->
+
                             </div>
                         </div>
-                        <!-- Image Gallery -->
+
                         <div class="card p-6 md:p-8">
                             <h2 class="text-2xl font-semibold mb-6 text-foreground">Screenshots & Demonstrações</h2>
                             <div id="modal-images" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <!-- Images will be injected here -->
+
                             </div>
                             <p class="text-sm text-muted-foreground mt-6 italic">
                                 💡 Nota: As imagens dos projetos podem ser adicionadas posteriormente para proteção do
@@ -877,18 +897,18 @@
                         </div>
                     </div>
 
-                    <!-- Sidebar -->
+
                     <div class="space-y-6">
-                        <!-- Technologies -->
+
                         <div class="card p-6">
                             <h3 class="font-semibold mb-4 text-foreground border-b border-accent pb-2">
                                 Tecnologias Utilizadas
                             </h3>
                             <div id="modal-technologies" class="flex flex-wrap gap-2">
-                                <!-- Tech Badges -->
+
                             </div>
                         </div>
-                        <!-- Info -->
+
                         <div class="card p-6">
                             <h3 class="font-semibold mb-4 text-foreground border-b border-accent pb-2">
                                 Informações
@@ -897,7 +917,7 @@
                                 <div>
                                     <p class="text-muted-foreground mb-1">Categoria</p>
                                     <p id="modal-info-category" class="font-medium text-foreground">
-                                        <!-- Info Category -->
+
                                     </p>
                                 </div>
                                 <div>
@@ -913,7 +933,18 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- Lightbox Modal -->
+    <div id="imageLightbox"
+        class="fixed inset-0 z-[80] bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 opacity-0 pointer-events-none"
+        onclick="closeImageModal()">
+        <button class="absolute top-4 right-4 text-white hover:text-gray-300 z-[90] p-2" onclick="closeImageModal()">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightboxImage" src="" alt="Full view"
+            class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+    </div>
+
+
     <div id="toast-notification"
         class="fixed bottom-5 right-5 z-[100] hidden w-full max-w-xs rounded-md border bg-card p-4 text-card-foreground shadow-lg">
         <div class="flex items-start gap-3">
@@ -932,10 +963,14 @@
         </div>
     </div>
 
-    <!-- JavaScript para Interatividade -->
+
     <script>
+        // --- Definições Globais ---
+        var toastTimeout; // Declarado aqui para escopo global
+
         // --- Dados dos Projetos (para o Modal) ---
-        const projectsData = {
+        // Usando 'var' para evitar erros de re-declaração em ambientes que persistem o estado
+        var projectsData = {
             "analise-performance-acoes": {
                 title: "Precificação de Opções - Monte Carlo",
                 category: "python",
@@ -958,12 +993,12 @@
                         title: "Exemplo de Código (Parâmetros)",
                         description: "Configuração dos parâmetros da simulação.",
                         url: "https://placehold.co/600x400/2203512/ffffff?text=Exemplo+de+C%C3%B3digo",
-                        special: "monte-carlo-code-exemplo.png" // O arquivo original não pode ser carregado, usamos placeholder
+                        special: "monte-carlo-code-exemplo.png"
                     },
                     {
                         title: "Distribuição de Retornos",
                         description: "Análise estatística dos retornos logarítmicos",
-                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Gr%C3%A1fico+de+Distribui%C3%A7%C3%A3o"
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Gr%C3%A1fico+de+Distribui%C3%E7%C3%A3o"
                     },
                 ],
             },
@@ -1044,7 +1079,7 @@
             },
             "dashboard-kpi-executivo": {
                 title: "Sistema de Árvore Genealógica de KPIs (VBA)",
-                category: "vba", // Categoria alterada para 'vba'
+                category: "vba",
                 icon: "📊",
                 shortDescription:
                     "Sistema automatizado em Excel que usa VBA para gerar um fluxograma interativo (Estratégia > Mid-Term > Output > KPI) a partir de dados estruturados.",
@@ -1073,12 +1108,12 @@
                     {
                         title: "Estrutura do Fluxograma (Visualização)",
                         description: "Visualização das 4 camadas: Estratégia, Mid-Term, Output e KPI.",
-                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Fluxograma+de+KPIs+(Visualização)"
+                        url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/Arvore%20genealogica.jpg"
                     },
                     {
                         title: "Exemplo de Código VBA (Desenho)",
                         description: "Trecho do código que desenha dinamicamente as caixas e conectores.",
-                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Exemplo+de+Código+VBA"
+                        url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/VBA%20Arvore%20genealogica.jpg"
                     },
                 ],
             },
@@ -1128,13 +1163,20 @@
                 icon: "📊",
                 shortDescription:
                     "Dashboard interativo conectado em tempo real a formulários de coleta de dados, permitindo a visualização instantânea de métricas, filtros dinâmicos e análise geográfica.",
-                fullDescription: `Este projeto completa o ecossistema de dados iniciado com a criação dos formulários personalizados. Trata-se de um <strong>Dashboard Analítico de Business Intelligence</strong> conectado diretamente à base de dados onde as respostas dos questionários são armazenadas.<br><br>A solução transforma dados brutos de entrada em <i>insights</i> visuais instantâneos, eliminando a necessidade de tabulação manual e permitindo que gestores tomem decisões baseadas em dados em tempo real.<br><br>
-            <h3>Funcionalidades Principais:</h3>
+                fullDescription: `Este projeto completa o ecossistema de dados iniciado com a criação dos formulários personalizados. Trata-se de um <strong>Dashboard Analítico de Business Intelligence</strong> conectado diretamente à base de dados (Google Sheets) onde as respostas dos questionários são armazenadas.<br><br>A solução transforma dados brutos de entrada em <i>insights</i> visuais instantâneos, eliminando a necessidade de tabulação manual e permitindo que gestores tomem decisões baseadas em dados em tempo real.<br><br>
+            <h3>Funcionalidades Principais do Dashboard:</h3>
+            O dashboard (desenvolvido em Looker Studio / Power BI) é construído para oferecer máxima segmentação e clareza, conforme a estrutura de dados coletados:
             <ul>
-                <li><strong>Visão Geral e Geográfica:</strong> Mapas interativos e cartões de KPI permitem visualizar rapidamente a distribuição das respostas por estado e região, bem como o volume total de adesão.</li>
-                <li><strong>Filtros Dinâmicos Avançados:</strong> O painel permite segmentar todos os dados por múltiplos critérios simultâneos, como período (Datas), porte da instituição (Nº de Leitos), natureza jurídica (Pública/Privada/Filantrópica) e volume de atendimentos.</li>
-                <li><strong>Indicadores de Qualidade:</strong> Gráficos específicos monitoram métricas qualitativas cruciais, como o nível de interesse na iniciativa, o apoio da direção e a disponibilidade de recursos (capacitação, investimento, equipe).</li>
-                <li><strong>Monitoramento de Capacidade:</strong> Visualização clara da infraestrutura disponível nas instituições respondentes, permitindo identificar gargalos e oportunidades.</li>
+                <li><strong>Conexão em Tempo Real:</strong> Utiliza o conector nativo (Looker Studio) para ler a base de dados do Google Sheets em tempo real, refletindo as submissões dos questionários em segundos.</li>
+                <li><strong>Análise Geográfica:</strong> Inclui mapas interativos para visualizar a distribuição e o volume de respostas por Estado e Município.</li>
+                <li><strong>Filtros Dinâmicos Avançados:</strong> Permite segmentar todos os dados por critérios estratégicos como:
+                    <ul>
+                        <li>Faixa de Leitos e Volume de Atendimentos.</li>
+                        <li>Status de Associação ou Natureza Jurídica (Pública/Privada/Filantrópica).</li>
+                        <li>Nível de Interesse e Apoio da Direção (métricas qualitativas).</li>
+                    </ul>
+                </li>
+                <li><strong>Monitoramento de Indicadores Chave:</strong> Gráficos e cartões de KPI mostram o progresso da coleta (Total de Respostas) e a distribuição de respostas em questões críticas (Ex: Necessidades, Desafios, Experiência Prévia).</li>
             </ul>
             <br>
             <strong>Utilidade:</strong>
@@ -1316,7 +1358,6 @@
         }
 
         // --- Lógica do Toast ---
-        let toastTimeout;
         function showToast(title, description) {
             const toast = document.getElementById("toast-notification");
             document.getElementById("toast-title").textContent = title;
@@ -1338,6 +1379,31 @@
             setTimeout(() => {
                 toast.classList.add("hidden");
             }, 300);
+        }
+
+        // --- Lógica do Lightbox (Nova Função) ---
+        function openImageModal(src, alt) {
+            const lightbox = document.getElementById("imageLightbox");
+            const lightboxImage = document.getElementById("lightboxImage");
+
+            lightboxImage.src = src;
+            lightboxImage.alt = alt;
+
+            lightbox.classList.remove("hidden");
+            // Timeout para permitir a transição de opacidade
+            setTimeout(() => {
+                lightbox.classList.add("active");
+            }, 10);
+        }
+
+        function closeImageModal() {
+            const lightbox = document.getElementById("imageLightbox");
+            lightbox.classList.remove("active");
+
+            setTimeout(() => {
+                lightbox.classList.add("hidden");
+                document.getElementById("lightboxImage").src = "";
+            }, 300); // Tempo da transição
         }
 
         // --- Lógica do Modal de Projeto ---
@@ -1381,7 +1447,7 @@
                 </a>`;
             }
 
-            // Imagens
+            // Imagens (ATUALIZADO PARA LIGHTBOX)
             const imagesContainer = document.getElementById("modal-images");
             imagesContainer.innerHTML = "";
             project.images.forEach(image => {
@@ -1392,9 +1458,14 @@
 
                 imagesContainer.innerHTML += `
                 <div class="space-y-2">
-                    <div class="aspect-video bg-muted rounded-lg overflow-hidden border border-border shadow-sm">
-                        <img src="${imageUrl}" alt="${image.title}" class="w-full h-full object-cover" 
+                    <div class="aspect-video bg-muted rounded-lg overflow-hidden border border-border shadow-sm group relative">
+                        <img src="${imageUrl}" alt="${image.title}" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer" 
+                             onclick="openImageModal(this.src, this.alt)"
                              onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Imagem+Indispon%C3%ADvel'; this.onerror=null;">
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                            <i data-lucide="maximize-2" class="text-white w-8 h-8"></i>
+                        </div>
                     </div>
                     <p class="text-sm text-muted-foreground px-1">${image.title}</p>
                 </div>
