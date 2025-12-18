@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pietro Lippolis - Analista | Consultoria</title>
+    <meta name="description"
+        content="Analista especializado em análise de dados, Python e Power BI. Experiência em M&A, modelagem financeira e dashboards executivos." />
+    <meta name="author" content="Pietro Lippolis" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuração do Tailwind (Baseada em tailwind.config.ts) -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                container: {
+                    center: true,
+                    padding: "2rem",
+                    screens: {
+                        "2xl": "1400px",
+                    },
+                },
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    keyframes: {
+                        "accordion-down": {
+                            from: { height: "0" },
+                            to: { height: "var(--radix-accordion-content-height)" },
+                        },
+                        "accordion-up": {
+                            from: { height: "var(--radix-accordion-content-height)" },
+                            to: { height: "0" },
+                        },
+                        "toast-in": {
+                            "0%": { opacity: "0", transform: "translateY(100%)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
+                        },
+                        "toast-out": {
+                            "0%": { opacity: "1", transform: "translateY(0)" },
+                            "100%": { opacity: "0", transform: "translateY(100%)" },
+                        },
+                    },
+                    animation: {
+                        "accordion-down": "accordion-down 0.2s ease-out",
+                        "accordion-up": "accordion-up 0.2s ease-out",
+                        "toast-in": "toast-in 0.3s ease-out forwards",
+                        "toast-out": "toast-out 0.3s ease-in forwards",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Estilos CSS (Baseados em src/index.css e estilos customizados) -->
+    <style type="text/tailwindcss">
+        @layer base {
+        :root {
+          --background: 252 100% 98%;
+          --foreground: 200 50% 15%;
+          --card: 0 0% 100%;
+          --card-foreground: 200 50% 15%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 200 50% 15%;
+          --primary: 222 79% 55%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 35 82% 15%;
+          --secondary-foreground: 0 0% 98%;
+          --muted: 210 20% 96%;
+          --muted-foreground: 200 10% 45%;
+          --accent: 17 95% 61%;
+          --accent-foreground: 0 0% 98%;
+          --destructive: 350 85% 42%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 30 15% 85%;
+          --input: 30 15% 85%;
+          --ring: 222 79% 55%;
+          --radius: 0.75rem;
+        }
+
+        .dark {
+          --background: 220 40% 10%;
+          --foreground: 0 0% 95%;
+          --card: 220 35% 12%;
+          --card-foreground: 0 0% 95%;
+          --popover: 220 35% 12%;
+          --popover-foreground: 0 0% 95%;
+          --primary: 222 79% 55%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 220 30% 18%;
+          --secondary-foreground: 0 0% 95%;
+          --muted: 220 30% 18%;
+          --muted-foreground: 210 15% 65%;
+          --accent: 17 95% 61%;
+          --accent-foreground: 0 0% 98%;
+          --destructive: 0 72% 51%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 220 30% 20%;
+          --input: 220 30% 20%;
+          --ring: 222 79% 55%;
+        }
+      }
+
+      @layer base {
+        * {
+          @apply border-border;
+        }
+        body {
+          @apply bg-background text-foreground;
+          font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, sans-serif;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+        /* Estilos para o Modal */
+        #projectModalBackdrop {
+          transition: opacity 0.3s ease;
+        }
+        #projectModalContent {
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-enter {
+          opacity: 0;
+        }
+        .modal-enter-active {
+          opacity: 1;
+        }
+        .modal-enter-active #projectModalContent {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        .modal-enter #projectModalContent {
+          transform: translateY(2rem) scale(0.95);
+          opacity: 0;
+        }
+        .modal-leave {
+          opacity: 1;
+        }
+        .modal-leave-active {
+          opacity: 0;
+        }
+        .modal-leave-active #projectModalContent {
+          transform: translateY(2rem) scale(0.95);
+          opacity: 0;
+        }
+
+        /* Estilos para o Toast */
+        #toast-notification {
+          animation: toast-in 0.3s ease-out forwards;
+        }
+        #toast-notification.toast-leave {
+          animation: toast-out 0.3s ease-in forwards;
+        }
+        
+        /* Estilos para o "prose" (renderização de markdown/html) */
+        .prose strong {
+            @apply font-semibold text-foreground;
+        }
+        .prose ul {
+            @apply list-disc list-outside pl-5;
+        }
+        .prose li {
+            @apply my-2;
+        }
+        .prose h2 {
+            @apply text-2xl font-semibold mb-4 text-foreground;
+        }
+        .prose h3 {
+            @apply text-xl font-semibold mb-3 text-foreground;
+        }
+      }
+
+      /* Classes ShadCN UI recriadas com @apply */
+      @layer components {
+        .btn {
+          @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+        }
+        .btn-default {
+          @apply bg-primary text-primary-foreground hover:bg-primary/90;
+        }
+        .btn-outline {
+          @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+        }
+        .btn-ghost {
+          @apply hover:bg-accent hover:text-accent-foreground;
+        }
+        .btn-lg {
+          @apply h-11 rounded-md px-8;
+        }
+        .btn-sm {
+          @apply h-9 rounded-md px-3;
+        }
+        .btn-icon {
+          @apply h-10 w-10;
+        }
+
+        .card {
+          @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+        }
+
+        .badge {
+          @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+        }
+        .badge-default {
+          @apply border-transparent bg-primary text-primary-foreground;
+        }
+        .badge-secondary {
+          @apply border-transparent bg-secondary text-secondary-foreground;
+        }
+        .badge-outline {
+          @apply text-foreground;
+        }
+
+        .input {
+          @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+        }
+        .textarea {
+          @apply flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+        }
+        .label {
+          @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+        }
+      }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-md border-b border-border z-50 transition-all">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <h2 class="text-xl font-bold text-primary cursor-pointer" onclick="scrollToSection('inicio')">
+                        Pietro Lippolis
+                    </h2>
+                </div>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex items-center gap-8" id="desktop-menu">
+                    <li>
+                        <button data-section="inicio" onclick="scrollToSection('inicio')"
+                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary">
+                            inicio
+                        </button>
+                    </li>
+                    <li>
+                        <button data-section="sobre" onclick="scrollToSection('sobre')"
+                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
+                            sobre
+                        </button>
+                    </li>
+                    <li>
+                        <button data-section="projetos" onclick="scrollToSection('projetos')"
+                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
+                            projetos
+                        </button>
+                    </li>
+                    <li>
+                        <button data-section="contato" onclick="scrollToSection('contato')"
+                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
+                            contato
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+                    id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden fixed inset-0 top-[73px] bg-background/98 backdrop-blur-md z-40 hidden">
+            <ul class="flex flex-col items-center justify-center gap-8 h-full">
+                <li>
+                    <button data-section="inicio" onclick="scrollToSection('inicio', true)"
+                        class="mobile-nav-link text-2xl font-medium capitalize transition-colors text-primary">
+                        inicio
+                    </button>
+                </li>
+                <li>
+                    <button data-section="sobre" onclick="scrollToSection('sobre', true)"
+                        class="mobile-nav-link text-2xl font-medium capitalize transition-colors text-foreground hover:text-primary">
+                        sobre
+                    </button>
+                </li>
+                <li>
+                    <button data-section="projetos" onclick="scrollToSection('projetos', true)"
+                        class="mobile-nav-link text-2xl font-medium capitalize transition-colors text-foreground hover:text-primary">
+                        projetos
+                    </button>
+                </li>
+                <li>
+                    <button data-section="contato" onclick="scrollToSection('contato', true)"
+                        class="mobile-nav-link text-2xl font-medium capitalize transition-colors text-foreground hover:text-primary">
+                        contato
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (Início) -->
+        <section id="inicio"
+            class="min-h-screen flex items-center pt-20 pb-16 bg-gradient-to-br from-background via-background to-primary/5">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-[1fr,auto] gap-12 items-center">
+                    <div class="text-center lg:text-left">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                            Olá, eu sou
+                            <span class="text-primary">Pietro Lippolis</span>
+                        </h1>
+                        <h2 class="text-2xl md:text-3xl font-semibold text-accent mb-6">
+                            Analista | Consultoria
+                        </h2>
+                        <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
+                            Especialista em transformar dados em estratégia.
+                            Combino Ciência de Dados e IA para automatizar processos,
+                            criando dashboards executivos (Power BI, Excel, Looker) que garantem decisões
+                            ágeis e precisas.
+                        </p>
+                        <div class="flex gap-4 flex-wrap justify-center lg:justify-start">
+                            <button onclick="scrollToSection('projetos')" class="btn btn-default btn-lg">
+                                Ver Projetos
+                            </button>
+                            <button onclick="scrollToSection('contato')" class="btn btn-outline btn-lg">
+                                Entrar em Contato
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div
+                            class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-2xl">
+                            <i data-lucide="user" class="w-32 h-32 md:w-40 md:h-40 text-white"
+                                style="stroke-width: 1.5px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section (Sobre) -->
+        <section id="sobre" class="py-24 bg-card">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative pb-4">
+                    Sobre Mim
+                    <span
+                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
+                </h2>
+                <div class="max-w-4xl mx-auto mt-12">
+                    <p class="text-lg text-center text-muted-foreground mb-12">
+                        Analista na Ekantika Consultoria com formação em Ciências Econômicas.
+                        Aplico Data Science e IA para otimizar processos e gerar relatórios,
+                        desenvolvendo soluções de e dashboards estratégicos para tomada de decisão.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Item Sobre -->
+                        <div
+                            class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="building-2" class="w-8 h-8 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-foreground">
+                                    Experiência Atual
+                                </h4>
+                                <p class="text-muted-foreground">
+                                    Ekantika Consultoria - Analista
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item Sobre -->
+                        <div
+                            class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="graduation-cap" class="w-8 h-8 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-foreground">Formação</h4>
+                                <p class="text-muted-foreground">Graduação em Ciências Econômicas</p>
+                            </div>
+                        </div>
+                        <!-- Item Sobre -->
+                        <div
+                            class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-8 h-8 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-foreground">
+                                    Localização
+                                </h4>
+                                <p class="text-muted-foreground">São Paulo, SP</p>
+                            </div>
+                        </div>
+                        <!-- Item Sobre -->
+                        <div
+                            class="card p-6 flex items-start gap-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="trending-up" class="w-8 h-8 text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1 text-foreground">
+                                    Especialização
+                                </h4>
+                                <p class="text-muted-foreground">
+                                    Análise e Ciência de Dados
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Projetos) -->
+        <section id="projetos" class="py-24 bg-background">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative pb-4">
+                    Projetos
+                    <span
+                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
+                </h2>
+
+                <!-- Filtros de Projeto - ATUALIZADO: Adicionado VBA e renomeado Power BI -->
+                <div class="flex justify-center gap-4 mt-12 mb-12 flex-wrap" id="project-filters">
+                    <button data-filter="all" class="btn btn-default rounded-full filter-btn px-6 py-3 text-base">
+                        Todos
+                    </button>
+                    <button data-filter="python" class="btn btn-outline rounded-full filter-btn px-6 py-3 text-base">
+                        Python
+                    </button>
+                    <button data-filter="vba" class="btn btn-outline rounded-full filter-btn px-6 py-3 text-base">
+                        VBA / Excel
+                    </button>
+                    <button data-filter="powerbi" class="btn btn-outline rounded-full filter-btn px-6 py-3 text-base">
+                        Power BI / Looker
+                    </button>
+                </div>
+
+                <!-- Grelha de Projetos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto" id="projects-grid">
+                    <!-- Projeto 1 -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="python" data-id="analise-performance-acoes">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                🐍
+                            </div>
+                            <span class="badge badge-default capitalize">Python</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Precificação de Opções - Monte Carlo
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Simulação de Monte Carlo para precificação de opções de compra e venda usando Discretização
+                            de Euler.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">Python</span>
+                            <span class="badge badge-outline text-xs">NumPy</span>
+                            <span class="badge badge-outline text-xs">Pandas</span>
+                            <span class="badge badge-outline text-xs">yFinance</span>
+                            <span class="badge badge-outline text-xs">SciPy</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('analise-performance-acoes')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2 -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="python" data-id="dashboard-indicadores-ma">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                🤖
+                            </div>
+                            <span class="badge badge-default capitalize">Python</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Agentes de IA para análise de dados e geração de relatório
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Sistema multi-agente de IA para diagnóstico e otimização operacional em hospitais usando
+                            Google Vertex AI.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">Python</span>
+                            <span class="badge badge-outline text-xs">Google Vertex AI</span>
+                            <span class="badge badge-outline text-xs">Gemini 2.5</span>
+                            <span class="badge badge-outline text-xs">Pandas</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('dashboard-indicadores-ma')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3 (Transcrição de Áudio) -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="python" data-id="automacao-relatorios-financeiros">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                🐍
+                            </div>
+                            <span class="badge badge-default capitalize">Python</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Transcrição de Áudio com IA (Whisper)
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Sistema de transcrição automática de áudio (m4a, mp3) para texto utilizando o modelo
+                            Whisper-large-v3-turbo com aceleração CUDA.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">Python</span>
+                            <span class="badge badge-outline text-xs">FFmpeg</span>
+                            <span class="badge badge-outline text-xs">Whisper (IA)</span>
+                            <span class="badge badge-outline text-xs">PyTorch/CUDA</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('automacao-relatorios-financeiros')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 4 (Árvore Genealógica de KPIs - VBA) -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="vba" data-id="dashboard-kpi-executivo">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                📊
+                            </div>
+                            <!-- Categoria do Badge -->
+                            <span class="badge badge-secondary capitalize">VBA/Excel</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Sistema de Árvore Genealógica de KPIs (VBA)
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Sistema automatizado em Excel que usa VBA para gerar um fluxograma interativo (Estratégia >
+                            Mid-Term > Output > KPI) a partir de dados estruturados.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">VBA</span>
+                            <span class="badge badge-outline text-xs">Excel</span>
+                            <span class="badge badge-outline text-xs">Fluxograma</span>
+                            <span class="badge badge-outline text-xs">Automação</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('dashboard-kpi-executivo')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 5 (Questionários Dinâmicos) -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="powerbi" data-id="analise-ma-mercado">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                📝
+                            </div>
+                            <!-- Categoria do Badge ATUALIZADA -->
+                            <span class="badge badge-secondary capitalize">Web / Scripting</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Criação de Questionários Dinâmicos e Integrados
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Sistema de coleta de dados personalizado, integrado diretamente a planilhas de análise, com
+                            lógica de fluxo de perguntas dinâmicas.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">App Script</span>
+                            <span class="badge badge-outline text-xs">JavaScript</span>
+                            <span class="badge badge-outline text-xs">Google Sheets</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('analise-ma-mercado')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 6 (Dashboard de Monitoramento - ATUALIZADO) -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="powerbi" data-id="dashboard-performance-financeira">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                📊
+                            </div>
+                            <!-- Categoria do Badge -->
+                            <span class="badge badge-secondary capitalize">Power BI / Looker</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Dashboard de Monitoramento e Análise de Respostas
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Dashboard interativo conectado em tempo real a formulários de coleta de dados, permitindo a
+                            visualização instantânea de métricas, filtros dinâmicos e análise geográfica.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">Looker Studio</span>
+                            <span class="badge badge-outline text-xs">Google Sheets</span>
+                            <span class="badge badge-outline text-xs">Business Intelligence</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('dashboard-performance-financeira')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (Contato) -->
+        <section id="contato" class="py-24 bg-background">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 relative pb-4">
+                    Contato
+                    <span
+                        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
+                </h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mt-12">
+                    <!-- Informações de Contato -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">Vamos conversar!</h3>
+                        <p class="text-muted-foreground mb-8">
+                            Estou sempre aberto a novas oportunidades e colaborações. Entre
+                            em contato comigo através do formulário ou pelos canais abaixo.
+                        </p>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="mail" class="w-5 h-5 text-primary flex-shrink-0"></i>
+                                <a href="mailto:pietro.lippolis53@gmail.com"
+                                    class="text-foreground hover:text-primary transition-colors">
+                                    pietro.lippolis53@gmail.com
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="phone" class="w-5 h-5 text-primary flex-shrink-0"></i>
+                                <a href="tel:+5511963981137"
+                                    class="text-foreground hover:text-primary transition-colors">
+                                    (11) 96398-1137
+                                </a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-primary flex-shrink-0"></i>
+                                <span class="text-foreground">São Paulo, SP</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                                class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-accent transition-all hover:-translate-y-1 shadow-lg"
+                                aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                                class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-accent transition-all hover:-translate-y-1 shadow-lg"
+                                aria-label="GitHub">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de Contato -->
+                    <div class="card p-8 border-border shadow-lg">
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="label">Nome</label>
+                                <input id="name" name="name" required class="input mt-2"
+                                    placeholder="Seu nome completo" />
+                            </div>
+
+                            <div>
+                                <label for="email" class="label">Email</label>
+                                <input id="email" name="email" type="email" required class="input mt-2"
+                                    placeholder="seu@email.com" />
+                            </div>
+
+                            <div>
+                                <label for="subject" class="label">Assunto</label>
+                                <input id="subject" name="subject" required class="input mt-2"
+                                    placeholder="Assunto da mensagem" />
+                            </div>
+
+                            <div>
+                                <label for="message" class="label">Mensagem</label>
+                                <textarea id="message" name="message" required class="textarea mt-2 min-h-[150px]"
+                                    placeholder="Escreva sua mensagem aqui..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-default w-full" id="contact-submit-btn">
+                                Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-foreground text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/80" id="footer-year">
+                    © 2024 Pietro Lippolis. Todos os direitos reservados.
+                </p>
+                <div class="flex gap-6 flex-wrap justify-center">
+                    <button onclick="scrollToSection('inicio')"
+                        class="text-white/80 hover:text-white transition-colors">
+                        Início
+                    </button>
+                    <button onclick="scrollToSection('sobre')" class="text-white/80 hover:text-white transition-colors">
+                        Sobre
+                    </button>
+                    <button onclick="scrollToSection('projetos')"
+                        class="text-white/80 hover:text-white transition-colors">
+                        Projetos
+                    </button>
+                    <button onclick="scrollToSection('contato')"
+                        class="text-white/80 hover:text-white transition-colors">
+                        Contato
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModalBackdrop" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm hidden"
+        onclick="closeProjectModal()"></div>
+    <div id="projectModal" class="fixed inset-0 z-[70] p-4 md:p-6 overflow-y-auto hidden">
+        <div id="projectModalContent" class="card w-full max-w-5xl mx-auto my-8 opacity-0 translate-y-8"
+            onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-border flex justify-between items-center">
+                <button class="btn btn-ghost" onclick="closeProjectModal()">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                    Voltar aos Projetos
+                </button>
+                <button class="btn btn-ghost btn-icon" onclick="closeProjectModal()">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-4 md:p-8">
+                <!-- Project Header -->
+                <div class="mb-8 md:mb-12">
+                    <div class="flex flex-col sm:flex-row items-start gap-4 mb-4">
+                        <div id="modal-icon"
+                            class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl shadow-lg flex-shrink-0">
+                            <!-- Icon goes here -->
+                        </div>
+                        <div class="flex-1">
+                            <span id="modal-category" class="badge badge-default mb-2">
+                                <!-- Category -->
+                            </span>
+                            <h1 id="modal-title" class="text-3xl md:text-4xl font-bold text-foreground mb-2">
+                                <!-- Title -->
+                            </h1>
+                            <p id="modal-shortDescription" class="text-lg md:text-xl text-muted-foreground">
+                                <!-- Short Description -->
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project Links -->
+                    <div class="flex gap-3 mt-6" id="modal-links">
+                        <!-- Links (GitHub/Demo) will be injected here -->
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Main Content -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <!-- Full Description -->
+                        <div class="card p-6 md:p-8">
+                            <h2 class="text-2xl font-semibold mb-4 text-foreground">Sobre o Projeto</h2>
+                            <div id="modal-fullDescription" class="prose prose-lg max-w-none text-muted-foreground">
+                                <!-- Full Description (HTML) -->
+                            </div>
+                        </div>
+                        <!-- Image Gallery -->
+                        <div class="card p-6 md:p-8">
+                            <h2 class="text-2xl font-semibold mb-6 text-foreground">Screenshots & Demonstrações</h2>
+                            <div id="modal-images" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Images will be injected here -->
+                            </div>
+                            <p class="text-sm text-muted-foreground mt-6 italic">
+                                💡 Nota: As imagens dos projetos podem ser adicionadas posteriormente para proteção do
+                                código-fonte.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="space-y-6">
+                        <!-- Technologies -->
+                        <div class="card p-6">
+                            <h3 class="font-semibold mb-4 text-foreground border-b border-accent pb-2">
+                                Tecnologias Utilizadas
+                            </h3>
+                            <div id="modal-technologies" class="flex flex-wrap gap-2">
+                                <!-- Tech Badges -->
+                            </div>
+                        </div>
+                        <!-- Info -->
+                        <div class="card p-6">
+                            <h3 class="font-semibold mb-4 text-foreground border-b border-accent pb-2">
+                                Informações
+                            </h3>
+                            <div class="space-y-3 text-sm">
+                                <div>
+                                    <p class="text-muted-foreground mb-1">Categoria</p>
+                                    <p id="modal-info-category" class="font-medium text-foreground">
+                                        <!-- Info Category -->
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="text-muted-foreground mb-1">Status</p>
+                                    <span class="badge badge-default"
+                                        style="background-color: #16a34a;">Concluído</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification"
+        class="fixed bottom-5 right-5 z-[100] hidden w-full max-w-xs rounded-md border bg-card p-4 text-card-foreground shadow-lg">
+        <div class="flex items-start gap-3">
+            <div class="flex-shrink-0 pt-0.5">
+                <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+            </div>
+            <div class="flex-1">
+                <p class="text-sm font-medium" id="toast-title">Mensagem enviada!</p>
+                <p class="text-sm text-muted-foreground" id="toast-description">
+                    Obrigado pelo contato. Retornarei em breve!
+                </p>
+            </div>
+            <button class="flex-shrink-0" onclick="hideToast()">
+                <i data-lucide="x" class="w-4 h-4 text-muted-foreground"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript para Interatividade -->
+    <script>
+        // --- Dados dos Projetos (para o Modal) ---
+        const projectsData = {
+            "analise-performance-acoes": {
+                title: "Precificação de Opções - Monte Carlo",
+                category: "python",
+                icon: "🐍",
+                shortDescription:
+                    "Simulação de Monte Carlo para precificação de opções de compra e venda usando Discretização de Euler.",
+                fullDescription: `Este projeto implementa um modelo quantitativo de precificação de opções europeias utilizando a <strong>Simulação de Monte Carlo</strong> com <strong>Discretização de Euler</strong>.<br><br>O sistema calcula o preço teórico de opções de compra (Call) e venda (Put) para ações dos mercados americano e brasileiro, considerando parâmetros como volatilidade histórica, taxa livre de risco e movimento browniano geométrico.<br><br><strong>Metodologia:</strong><br>O modelo utiliza o Movimento Browniano Geométrico (GBM) para simular milhares de trajetórias de preço do ativo subjacente. A discretização de Euler divide o tempo até o vencimento em intervalos pequenos, permitindo uma aproximação numérica precisa da evolução do preço da ação.<br><br><strong>Funcionalidades principais:</strong><ul><li>Precificação de opções Call e Put europeias</li><li>Suporte para mercados dos EUA e Brasil</li><li>Cálculo automático de volatilidade anualizada</li><li>Busca automática da taxa livre de risco (US Treasury 10Y)</li><li>Simulação com 20.000 iterações para precisão</li><li>Visualização de retornos logarítmicos e distribuições</li><li>Cálculo de payoff com desconto a valor presente</li></ul><br><strong>Aplicações práticas:</strong><ul><li>Valuation de derivativos financeiros</li><li>Análise de risco em portfólios com opções</li><li>Comparação com preços de mercado (arbitragem)</li><li>Backtesting de estratégias com opções</li></ul>`,
+                technologies: [
+                    "Python",
+                    "NumPy",
+                    "Pandas",
+                    "yFinance",
+                    "SciPy",
+                    "Matplotlib",
+                ],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Exemplo de Código (Parâmetros)",
+                        description: "Configuração dos parâmetros da simulação.",
+                        url: "https://placehold.co/600x400/2203512/ffffff?text=Exemplo+de+C%C3%B3digo",
+                        special: "monte-carlo-code-exemplo.png" // O arquivo original não pode ser carregado, usamos placeholder
+                    },
+                    {
+                        title: "Distribuição de Retornos",
+                        description: "Análise estatística dos retornos logarítmicos",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Gr%C3%A1fico+de+Distribui%C3%A7%C3%A3o"
+                    },
+                ],
+            },
+            "dashboard-indicadores-ma": {
+                title: "Agentes de IA para análise de dados e geração de relatório",
+                category: "python",
+                icon: "🤖",
+                shortDescription:
+                    "Sistema multi-agente de IA para diagnóstico e otimização operacional em hospitais usando Google Vertex AI.",
+                fullDescription: `Sistema avançado de inteligência artificial que utiliza múltiplos agentes especializados para analisar eficiência operacional em instituições de saúde.<br><br>Desenvolvido com <strong>Google Vertex AI (Gemini 2.5 Flash)</strong>, o sistema processa questionários de maturidade operacional, KPIs hospitalares e transcrições de reuniões para gerar diagnósticos completos e recomendações estratégicas personalizadas.<br><br><strong>Arquitetura Multi-Agente:</strong><br>O sistema é composto por 6 agentes especializados que trabalham de forma colaborativa:<ul><li>Agente de Análise de Maturidade</li><li>Agente de KPIs Operacionais</li><li>Agente de Análise de Transcrições</li><li>Agente de Correlação</li><li>Agente de Diagnóstico</li><li>Agente de Apresentação</li></ul><br><strong>Tecnologias e Integrações:</strong><ul><li>Google Vertex AI (Gemini 2.5 Flash)</li><li>Google Cloud Logging</li><li>Google Colab</li><li>Openpyxl</li><li>Sistema de Correlação Inteligente</li></ul>`,
+                technologies: [
+                    "Python",
+                    "Google Vertex AI",
+                    "Gemini 2.5",
+                    "Pandas",
+                    "Openpyxl",
+                    "Google Cloud Logging",
+                    "Google Colab",
+                ],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Arquitetura Multi-Agente",
+                        description: "Sistema de 6 agentes especializados em IA",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Arquitetura+IA"
+                    },
+                    {
+                        title: "Análise de KPIs Hospitalares",
+                        description: "Processamento de indicadores operacionais",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Dashboard+KPIs"
+                    },
+                ],
+            },
+            "automacao-relatorios-financeiros": {
+                title: "Transcrição de Áudio com IA (Whisper)",
+                category: "python",
+                icon: "🐍",
+                shortDescription:
+                    "Sistema de transcrição automática de áudio (m4a, mp3) para texto utilizando o modelo Whisper-large-v3-turbo com aceleração CUDA.",
+                fullDescription: `Este projeto em Python automatiza a transcrição de áudios longos (como reuniões ou apresentações) para texto, utilizando o poder do modelo de Machine Learning <strong>Whisper Large v3 (ylacombe/whisper-large-v3-turbo)</strong>, otimizado para GPUs.<br><br>O processo é dividido em duas etapas principais:<br><br>
+            <h3>1. Conversão e Pré-processamento (FFmpeg)</h3>
+            O script primeiro garante que o arquivo de áudio (ex: .m4a) seja convertido para um formato compatível com o modelo (ex: .mp3) usando a biblioteca <strong>FFmpeg-python</strong>. Isso é essencial para manter a compatibilidade e garantir a qualidade do input para a IA.<br><br>
+            
+            <h3>2. Transcrição com IA (Transformers/PyTorch)</h3>
+            A transcrição é realizada usando o pipeline da biblioteca <strong>Hugging Face Transformers</strong> com o modelo Whisper otimizado. Para lidar com a carga computacional, o modelo é configurado com <strong>torch.float16</strong> e movido para <strong>CUDA (GPU)</strong>, permitindo processamento rápido e eficiente.<br>
+            
+            <strong>Características e Utilidade:</strong>
+            <ul>
+                <li><strong>Suporte a Áudios Longos:</strong> A configuração de <code>return_timestamps=True</code> é crucial para lidar com áudios com mais de 30 segundos de forma robusta.</li>
+                <li><strong>Alta Precisão:</strong> Utiliza a versão "large-v3-turbo" do Whisper para maior fidelidade na transcrição.</li>
+                <li><strong>Eficiência:</strong> Aceleração via GPU (CUDA) e otimização de memória (float16) garantem velocidade e baixo consumo de recursos.</li>
+                <li><strong>Geração de Documentos:</strong> O resultado final é salvo automaticamente em um arquivo de texto (.txt) pronto para análise.</li>
+            </ul>
+            <br>
+            <strong>Aplicações:</strong>
+            <ul>
+                <li>Transformar gravações de reuniões de clientes/equipe em atas textuais.</li>
+                <li>Análise de conteúdo de apresentações e conferências.</li>
+                <li>Base para projetos de NLP (Processamento de Linguagem Natural), como sumarização automática.</li>
+            </ul>
+            `,
+                technologies: ["Python", "FFmpeg", "Transformers (Whisper)", "PyTorch (CUDA)", "Hugging Face"],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Fluxo de Transcrição",
+                        description: "Da mídia ao texto via IA",
+                        url: "https://placehold.co/600x400/2203512/ffffff?text=Fluxo+de+Transcrição+IA"
+                    },
+                    {
+                        title: "Otimização CUDA/GPU",
+                        description: "Processamento otimizado de ML",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Processamento+Otimizado"
+                    },
+                ],
+            },
+            "dashboard-kpi-executivo": {
+                title: "Sistema de Árvore Genealógica de KPIs (VBA)",
+                category: "vba", // Categoria alterada para 'vba'
+                icon: "📊",
+                shortDescription:
+                    "Sistema automatizado em Excel que usa VBA para gerar um fluxograma interativo (Estratégia > Mid-Term > Output > KPI) a partir de dados estruturados.",
+                fullDescription: `Este projeto é um sistema robusto desenvolvido em <strong>VBA (Visual Basic for Applications) no Excel</strong> que automatiza a criação de um fluxograma visual, ou "Árvore Genealógica", para acompanhar o desdobramento de metas e indicadores.<br><br>Ele transforma uma base de dados estruturada em colunas ocultas em um diagrama interativo e dinâmico, facilitando o entendimento da ligação entre objetivos estratégicos e KPIs de execução.<br><br>
+            <h3>Funcionamento e Estrutura:</h3>
+            O sistema opera com 4 níveis de hierarquia definidos na planilha (colunas B a E), seguindo o código VBA <code>GerarArvoreGenealogica</code>:
+            <ul>
+                <li><strong>1. Estratégia:</strong> Metas macro de longo prazo (<code>txtStrat</code>).</li>
+                <li><strong>2. Mid-Term:</strong> Objetivos de médio prazo (<code>txtMid</code>) que sustentam a estratégia.</li>
+                <li><strong>3. Output:</strong> Entregáveis e resultados tangíveis (<code>txtOut</code>).</li>
+                <li><strong>4. KPI:</strong> Indicadores Chave de Performance (<code>txtKPI</code>), a última camada de monitoramento.</li>
+            </ul>
+            <br>
+            <h3>Funcionalidades de Automação (VBA):</h3>
+            O código VBA é responsável por toda a mágica da visualização e interação:
+            <ul>
+                <li><strong>Desenho Dinâmico:</strong> A sub-rotina <code>GerarArvoreGenealogica</code> lê a base de dados (em colunas ocultas) e desenha retângulos (Shapes) para cada item e conecta-os com linhas (Connectors), criando o fluxograma.</li>
+                <li><strong>Interatividade:</strong> Cada caixa (Node) desenhada é clicável (<code>TreeShapeClick</code>), abrindo botões de ação (Adicionar Novo Nível, Editar Texto, Excluir), permitindo que o usuário interaja e atualize a árvore diretamente no visual.</li>
+                <li><strong>Manutenção de Dados:</strong> O sistema mantém a integridade dos dados, inserindo novas linhas e propagando a herança da estratégia automaticamente (Ex: Ao adicionar um novo Mid-Term, ele herda a Estratégia do bloco anterior).</li>
+                <li><strong>Interface Limpa:</strong> O código lida com a limpeza de desenhos antigos (<code>LimparArvore</code>) e oculta as colunas de dados brutos (<code>ws.Columns("A:I").Hidden = True</code>), garantindo que o usuário veja apenas o fluxograma interativo.</li>
+            </ul>`,
+                technologies: ["VBA", "Excel", "Fluxograma", "Automação", "Visualização de Dados", "VBA-Macros"],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Estrutura do Fluxograma (Visualização)",
+                        description: "Visualização das 4 camadas: Estratégia, Mid-Term, Output e KPI.",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Fluxograma+de+KPIs+(Visualização)"
+                    },
+                    {
+                        title: "Exemplo de Código VBA (Desenho)",
+                        description: "Trecho do código que desenha dinamicamente as caixas e conectores.",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Exemplo+de+Código+VBA"
+                    },
+                ],
+            },
+            "analise-ma-mercado": {
+                title: "Criação de Questionários Dinâmicos e Integrados",
+                category: "powerbi",
+                icon: "📝",
+                shortDescription:
+                    "Sistema de coleta de dados personalizado, integrado diretamente a planilhas de análise, com lógica de fluxo de perguntas dinâmicas.",
+                fullDescription: `Este projeto consiste no desenvolvimento de um sistema de <strong>questionários online completamente personalizados e dinâmicos</strong>, criados para coletar dados estruturados e integrar os resultados automaticamente em planilhas de análise.<br><br>Utilizando <strong>Google Apps Script (JavaScript)</strong> e HTML/CSS, a solução oferece uma interface customizada que vai além das ferramentas de formulário padrão, garantindo total controle sobre a experiência do usuário e o fluxo de dados.<br><br>
+            <h3>Personalização e Funcionalidade (App Script):</h3>
+            O grande diferencial é a capacidade de adaptação do questionário. O código em App Script permite:
+            <ul>
+                <li><strong>Lógica Condicional Avançada:</strong> O fluxo de perguntas é adaptado em tempo real, exibindo campos e seções diferentes com base nas respostas anteriores do usuário. Isso otimiza a coleta, focando apenas nas informações relevantes.</li>
+                <li><strong>Integração Direta:</strong> Ao invés de usar APIs complexas, o sistema salva as respostas diretamente em tempo real em uma Planilha Google (Google Sheets), servindo como banco de dados imediato para análise.</li>
+                <li><strong>Interface Customizada:</strong> O questionário não fica restrito a templates. O uso de HTML/CSS e JavaScript dentro do App Script permite a criação de uma experiência de usuário (UI/UX) que se alinha perfeitamente à identidade visual ou requisitos do projeto.</li>
+                <li><strong>Geração de Resultados:</strong> Após a submissão, gatilhos no App Script podem iniciar processamento de dados, como a geração de dashboards ou envio de notificações automáticas.</li>
+            </ul>
+            <br>
+            <strong>Tecnologias:</strong>
+            A solução utiliza o ecossistema Google Workspace para eficiência e colaboração:
+            <ul>
+                <li><strong>Google Apps Script (JavaScript):</strong> A camada de lógica de negócios e backend.</li>
+                <li><strong>HTML/CSS:</strong> Para renderização da interface do usuário (Custom UI).</li>
+                <li><strong>Google Sheets:</strong> Para o armazenamento e processamento imediato dos dados coletados.</li>
+                <li><strong>Automação de Fluxo de Trabalho:</strong> Para conectar a coleta à análise final.</li>
+            </ul>`,
+                technologies: ["App Script", "JavaScript", "HTML/CSS", "Google Sheets", "Automação de Formulários"],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Interface Customizada do Questionário",
+                        description: "A interface do questionário, desenhada com HTML/CSS.",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Interface+Customizada+de+Formulário"
+                    },
+                    {
+                        title: "Fluxo de Dados Automatizado",
+                        description: "Diagrama do fluxo de dados: Questionário -> App Script -> Google Sheets.",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Diagrama+de+Fluxo+de+Dados"
+                    },
+                ],
+            },
+            "dashboard-performance-financeira": {
+                title: "Dashboard de Monitoramento e Análise de Respostas",
+                category: "powerbi",
+                icon: "📊",
+                shortDescription:
+                    "Dashboard interativo conectado em tempo real a formulários de coleta de dados, permitindo a visualização instantânea de métricas, filtros dinâmicos e análise geográfica.",
+                fullDescription: `Este projeto completa o ecossistema de dados iniciado com a criação dos formulários personalizados. Trata-se de um <strong>Dashboard Analítico de Business Intelligence</strong> conectado diretamente à base de dados onde as respostas dos questionários são armazenadas.<br><br>A solução transforma dados brutos de entrada em <i>insights</i> visuais instantâneos, eliminando a necessidade de tabulação manual e permitindo que gestores tomem decisões baseadas em dados em tempo real.<br><br>
+            <h3>Funcionalidades Principais:</h3>
+            <ul>
+                <li><strong>Visão Geral e Geográfica:</strong> Mapas interativos e cartões de KPI permitem visualizar rapidamente a distribuição das respostas por estado e região, bem como o volume total de adesão.</li>
+                <li><strong>Filtros Dinâmicos Avançados:</strong> O painel permite segmentar todos os dados por múltiplos critérios simultâneos, como período (Datas), porte da instituição (Nº de Leitos), natureza jurídica (Pública/Privada/Filantrópica) e volume de atendimentos.</li>
+                <li><strong>Indicadores de Qualidade:</strong> Gráficos específicos monitoram métricas qualitativas cruciais, como o nível de interesse na iniciativa, o apoio da direção e a disponibilidade de recursos (capacitação, investimento, equipe).</li>
+                <li><strong>Monitoramento de Capacidade:</strong> Visualização clara da infraestrutura disponível nas instituições respondentes, permitindo identificar gargalos e oportunidades.</li>
+            </ul>
+            <br>
+            <strong>Utilidade:</strong>
+            Este dashboard serve como a "torre de controle" para projetos de levantamento de dados em larga escala, permitindo acompanhar o progresso da coleta e analisar o perfil dos participantes de forma ágil e intuitiva.`,
+                technologies: ["Looker Studio", "Google Sheets", "Business Intelligence", "Análise de Dados", "Data Visualization"],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Visão Geral do Dashboard",
+                        description: "Painel principal com KPIs, mapa geográfico e filtros de segmentação.",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Dashboard+Geral+e+Mapa"
+                    },
+                    {
+                        title: "Análise Detalhada de Indicadores",
+                        description: "Gráficos de distribuição por interesse, apoio institucional e capacidade.",
+                        url: "https://placehold.co/600x400/e2e8f0/64748b?text=Análise+de+Indicadores"
+                    },
+                ],
+            },
+        };
+
+        // --- Inicialização ---
+        document.addEventListener("DOMContentLoaded", () => {
+            // Ativar Ícones Lucide
+            lucide.createIcons();
+
+            // Atualizar Ano do Rodapé
+            document.getElementById("footer-year").textContent =
+                `© ${new Date().getFullYear()} Pietro Lippolis. Todos os direitos reservados.`;
+
+            // --- Lógica do Header e Scroll ---
+            const header = document.getElementById("main-header");
+            const navLinks = document.querySelectorAll(".nav-link");
+            const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+            let lastScrollTop = 0;
+
+            window.addEventListener("scroll", () => {
+                // REMOVIDO: Ocultar/mostrar header. Agora ele permanece fixo.
+                // let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                // if (scrollTop > lastScrollTop && scrollTop > 100) {
+                //   header.style.transform = "translateY(-100%)";
+                // } else {
+                //   header.style.transform = "translateY(0)";
+                // }
+                // lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+
+                // Atualizar links ativos
+                updateActiveNavSection();
+            });
+
+            // --- Lógica do Menu Móvel ---
+            const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            mobileMenuToggle.addEventListener("click", () => {
+                const isMenuOpen = !mobileMenu.classList.contains("hidden");
+                if (isMenuOpen) {
+                    mobileMenu.classList.add("hidden");
+                    mobileMenuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                    document.body.style.overflow = ""; // Restaura scroll
+                } else {
+                    mobileMenu.classList.remove("hidden");
+                    mobileMenuToggle.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+                    document.body.style.overflow = "hidden"; // Trava scroll
+                }
+                lucide.createIcons();
+            });
+
+            // --- Lógica de Filtro de Projetos ---
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const projectCards = document.querySelectorAll(".project-card");
+
+            filterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const filter = button.getAttribute("data-filter");
+
+                    // Atualizar aparência do botão
+                    filterButtons.forEach((btn) => {
+                        btn.classList.remove("btn-default");
+                        btn.classList.add("btn-outline");
+                    });
+                    button.classList.add("btn-default");
+                    button.classList.remove("btn-outline");
+
+                    // Filtrar cartões
+                    projectCards.forEach((card) => {
+                        const category = card.getAttribute("data-category");
+                        // Adicionado o novo filtro 'vba'
+                        if (filter === "all" || filter === category) {
+                            card.style.display = "flex";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                });
+            });
+
+            // --- Lógica do Formulário de Contato ---
+            const contactForm = document.getElementById("contact-form");
+            const submitBtn = document.getElementById("contact-submit-btn");
+
+            contactForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                if (submitBtn.disabled) return;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviando...";
+
+                // Simulação de envio
+                setTimeout(() => {
+                    showToast(
+                        "Mensagem enviada!",
+                        "Obrigado pelo contato. Retornarei em breve!"
+                    );
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Enviar Mensagem";
+                }, 1500);
+            });
+        });
+
+        // --- Funções Auxiliares Globais ---
+
+        // Função de Scroll Suave
+        function scrollToSection(sectionId, isMobile = false) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                if (isMobile) {
+                    // Fecha o menu móvel após clicar
+                    const mobileMenu = document.getElementById("mobile-menu");
+                    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+                    mobileMenu.classList.add("hidden");
+                    mobileMenuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                    document.body.style.overflow = "";
+                    lucide.createIcons();
+                }
+            }
+        }
+
+        // Função para atualizar links ativos na navegação
+        function updateActiveNavSection() {
+            const sections = ["inicio", "sobre", "projetos", "contato"];
+            const scrollPosition = window.scrollY + 100;
+            let currentSection = "inicio";
+
+            for (const sectionId of sections) {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetBottom = offsetTop + element.offsetHeight;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                        currentSection = sectionId;
+                        break;
+                    }
+                }
+            }
+
+            // Atualiza links desktop
+            document.querySelectorAll(".nav-link").forEach((link) => {
+                link.classList.remove("text-primary", "after:absolute", "after:bottom-0", "after:left-0", "after:w-full", "after:h-0.5", "after:bg-primary");
+                link.classList.add("text-foreground", "hover:text-primary");
+                if (link.getAttribute("data-section") === currentSection) {
+                    link.classList.add("text-primary", "after:absolute", "after:bottom-0", "after:left-0", "after:w-full", "after:h-0.5", "after:bg-primary");
+                    link.classList.remove("text-foreground", "hover:text-primary");
+                }
+            });
+
+            // Atualiza links mobile
+            document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+                link.classList.remove("text-primary");
+                link.classList.add("text-foreground", "hover:text-primary");
+                if (link.getAttribute("data-section") === currentSection) {
+                    link.classList.add("text-primary");
+                    link.classList.remove("text-foreground", "hover:text-primary");
+                }
+            });
+        }
+
+        // --- Lógica do Toast ---
+        let toastTimeout;
+        function showToast(title, description) {
+            const toast = document.getElementById("toast-notification");
+            document.getElementById("toast-title").textContent = title;
+            document.getElementById("toast-description").textContent = description;
+
+            clearTimeout(toastTimeout);
+            toast.classList.remove("hidden", "toast-leave");
+            toast.classList.add("toast-enter");
+
+            toastTimeout = setTimeout(() => {
+                hideToast();
+            }, 4000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById("toast-notification");
+            toast.classList.add("toast-leave");
+            clearTimeout(toastTimeout);
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 300);
+        }
+
+        // --- Lógica do Modal de Projeto ---
+        function openProjectModal(projectId) {
+            const project = projectsData[projectId];
+            if (!project) return;
+
+            // Preenche os dados do modal
+            document.getElementById("modal-icon").innerHTML = project.icon;
+            document.getElementById("modal-title").textContent = project.title;
+            document.getElementById("modal-shortDescription").textContent = project.shortDescription;
+            document.getElementById("modal-fullDescription").innerHTML = project.fullDescription;
+
+            // Categoria
+            const categoryBadge = document.getElementById("modal-category");
+            categoryBadge.textContent = project.category === "python" ? "Python" : project.category === "vba" ? "VBA/Excel" : "Power BI / Looker";
+            categoryBadge.className = `badge ${project.category === "python" ? 'badge-default' : 'badge-secondary'} mb-2 capitalize`;
+
+            document.getElementById("modal-info-category").textContent = project.category === "python" ? "Desenvolvimento Python" : project.category === "vba" ? "Automação VBA" : "Business Intelligence";
+
+            // Tecnologias
+            const techContainer = document.getElementById("modal-technologies");
+            techContainer.innerHTML = "";
+            project.technologies.forEach(tech => {
+                techContainer.innerHTML += `<span class="badge badge-outline">${tech}</span>`;
+            });
+
+            // Links
+            const linksContainer = document.getElementById("modal-links");
+            linksContainer.innerHTML = "";
+            if (project.demoLink) {
+                linksContainer.innerHTML += `
+                <a href="${project.demoLink}" target="_blank" class="btn btn-default">
+                    <i data-lucide="external-link" class="w-4 h-4 mr-2"></i> Ver Demo
+                </a>`;
+            }
+            if (project.githubLink) {
+                linksContainer.innerHTML += `
+                <a href="${project.githubLink}" target="_blank" class="btn btn-outline">
+                    <i data-lucide="github" class="w-4 h-4 mr-2"></i> GitHub
+                </a>`;
+            }
+
+            // Imagens
+            const imagesContainer = document.getElementById("modal-images");
+            imagesContainer.innerHTML = "";
+            project.images.forEach(image => {
+                // Usando o placeholder para a imagem específica
+                const imageUrl = image.special === "monte-carlo-code-exemplo.png"
+                    ? "https://placehold.co/600x400/2203512/ffffff?text=Exemplo+de+C%C3%B3digo"
+                    : image.url;
+
+                imagesContainer.innerHTML += `
+                <div class="space-y-2">
+                    <div class="aspect-video bg-muted rounded-lg overflow-hidden border border-border shadow-sm">
+                        <img src="${imageUrl}" alt="${image.title}" class="w-full h-full object-cover" 
+                             onerror="this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Imagem+Indispon%C3%ADvel'; this.onerror=null;">
+                    </div>
+                    <p class="text-sm text-muted-foreground px-1">${image.title}</p>
+                </div>
+            `;
+            });
+
+            // Recria ícones lucide no modal
+            lucide.createIcons();
+
+            // Exibe o modal
+            const modal = document.getElementById("projectModal");
+            const backdrop = document.getElementById("projectModalBackdrop");
+            modal.classList.remove("hidden");
+            backdrop.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+
+            // Adiciona classes para animação de entrada
+            requestAnimationFrame(() => {
+                backdrop.classList.add("modal-enter-active");
+                modal.classList.add("modal-enter-active");
+            });
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById("projectModal");
+            const backdrop = document.getElementById("projectModalBackdrop");
+
+            // Adiciona classes para animação de saída
+            backdrop.classList.remove("modal-enter-active");
+            modal.classList.remove("modal-enter-active");
+            backdrop.classList.add("modal-leave-active");
+            modal.classList.add("modal-leave-active");
+
+            document.body.style.overflow = "";
+
+            setTimeout(() => {
+                modal.classList.add("hidden");
+                backdrop.classList.add("hidden");
+                backdrop.classList.remove("modal-leave-active");
+                modal.classList.remove("modal-leave-active");
+            }, 300); // Duração da animação
+        }
+    </script>
+</body>
+
+</html>
