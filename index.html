@@ -497,23 +497,6 @@
                         class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
                 </h2>
 
-
-                <div class="flex justify-center gap-4 mt-12 mb-12 flex-wrap" id="project-filters">
-                    <button data-filter="all" class="btn btn-default rounded-full filter-btn px-6 py-3 text-base">
-                        Todos
-                    </button>
-                    <button data-filter="python" class="btn btn-outline rounded-full filter-btn px-6 py-3 text-base">
-                        Python
-                    </button>
-                    <button data-filter="vba" class="btn btn-outline rounded-full filter-btn px-6 py-3 text-base">
-                        VBA / Excel
-                    </button>
-                    <button data-filter="powerbi" class="btn btn-outline rounded-full filter-btn px-6 py-3 text-base">
-                        Power BI / Looker
-                    </button>
-                </div>
-
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto" id="projects-grid">
 
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
@@ -733,7 +716,7 @@
                         <div class="space-y-4 mb-8">
                             <div class="flex items-center gap-3">
                                 <i data-lucide="mail" class="w-5 h-5 text-primary flex-shrink-0"></i>
-                                <a href="mailto:pietro.lippolis53@gmail.com"
+                                <a href="mailto:pietro.lippolis53@gmail.com" target="_blank" rel="noopener noreferrer"
                                     class="text-foreground hover:text-primary transition-colors">
                                     pietro.lippolis53@gmail.com
                                 </a>
@@ -752,7 +735,8 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            <a href="https://www.linkedin.com/in/pietrolippolis" target="_blank"
+                                rel="noopener noreferrer"
                                 class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-accent transition-all hover:-translate-y-1 shadow-lg"
                                 aria-label="LinkedIn">
                                 <i data-lucide="linkedin" class="w-5 h-5"></i>
@@ -1246,34 +1230,8 @@
                 lucide.createIcons();
             });
 
-            // --- Lógica de Filtro de Projetos ---
-            const filterButtons = document.querySelectorAll(".filter-btn");
-            const projectCards = document.querySelectorAll(".project-card");
-
-            filterButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    const filter = button.getAttribute("data-filter");
-
-                    // Atualizar aparência do botão
-                    filterButtons.forEach((btn) => {
-                        btn.classList.remove("btn-default");
-                        btn.classList.add("btn-outline");
-                    });
-                    button.classList.add("btn-default");
-                    button.classList.remove("btn-outline");
-
-                    // Filtrar cartões
-                    projectCards.forEach((card) => {
-                        const category = card.getAttribute("data-category");
-                        // Adicionado o novo filtro 'vba'
-                        if (filter === "all" || filter === category) {
-                            card.style.display = "flex";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
-                });
-            });
+            // --- Lógica de Filtro de Projetos (REMOVIDA) ---
+            // O bloco de lógica para filtrar projetos foi removido para exibir todos os projetos.
 
             // --- Lógica do Formulário de Contato ---
             const contactForm = document.getElementById("contact-form");
@@ -1283,19 +1241,34 @@
                 e.preventDefault();
                 if (submitBtn.disabled) return;
 
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Enviando...";
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const subject = document.getElementById("subject").value;
+                const message = document.getElementById("message").value;
 
-                // Simulação de envio
+                // Cria o link mailto
+                const mailtoUrl = `mailto:pietro.lippolis53@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Nome: " + name + "\nEmail: " + email + "\n\n" + message)}`;
+
+                // Abre o cliente de email
+                // Hack para tentar contornar bloqueios de pop-up em iframes rigorosos
+                const link = document.createElement('a');
+                link.href = mailtoUrl;
+                // link.target = '_blank'; // Opcional, mas às vezes ajuda
+                link.click();
+
+                // Feedback visual
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Redirecionando...";
+
                 setTimeout(() => {
                     showToast(
-                        "Mensagem enviada!",
-                        "Obrigado pelo contato. Retornarei em breve!"
+                        "Redirecionando para seu Email",
+                        "Complete o envio através do seu aplicativo de email padrão."
                     );
                     contactForm.reset();
                     submitBtn.disabled = false;
                     submitBtn.textContent = "Enviar Mensagem";
-                }, 1500);
+                }, 1000);
             });
         });
 
@@ -1512,4 +1485,5 @@
 </body>
 
 </html>
+
 
