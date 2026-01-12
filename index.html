@@ -660,6 +660,38 @@
                         </div>
                     </div>
 
+                    <!-- NOVO PROJETO ADICIONADO AQUI -->
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="powerbi" data-id="monitor-noticias-ia">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                📰
+                            </div>
+                            <span class="badge badge-secondary capitalize">Web / Scripting</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Rastreador de Notícias de IA & Tech
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Automação que monitora e cataloga notícias recentes sobre IA e Tecnologia diretamente no
+                            Google Sheets.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">App Script</span>
+                            <span class="badge badge-outline text-xs">JavaScript</span>
+                            <span class="badge badge-outline text-xs">Google Sheets</span>
+                            <span class="badge badge-outline text-xs">RSS/XML</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('monitor-noticias-ia')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
 
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="powerbi" data-id="dashboard-performance-financeira">
@@ -736,7 +768,8 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <a href="https://www.linkedin.com/in/pietrolippolis" target="_blank" rel="noopener noreferrer"
+                            <a href="https://www.linkedin.com/in/pietrolippolis" target="_blank"
+                                rel="noopener noreferrer"
                                 class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-accent transition-all hover:-translate-y-1 shadow-lg"
                                 aria-label="LinkedIn">
                                 <i data-lucide="linkedin" class="w-5 h-5"></i>
@@ -1180,6 +1213,38 @@
                     },
                 ],
             },
+            "monitor-noticias-ia": {
+                title: "Rastreador de Notícias",
+                category: "powerbi",
+                icon: "📰",
+                shortDescription: "Automação que monitora e cataloga notícias recentes sobre IA e Tecnologia diretamente no Google Sheets.",
+                fullDescription: `Este projeto é uma ferramenta de inteligência de mercado desenvolvida em <strong>Google Apps Script</strong> que automatiza a busca e organização de notícias sobre tecnologia e Inteligência Artificial.<br><br>O script conecta-se ao feed RSS do Google News, filtra conteúdos relevantes e os organiza automaticamente em uma planilha, permitindo um acompanhamento ágil das tendências do setor.<br><br>
+                <h3>Funcionalidades Principais:</h3>
+                <ul>
+                    <li><strong>Busca Automatizada:</strong> Realiza varreduras no Google News com base em palavras-chave estratégicas (ex: "Novos LLMs", "Investimentos em IA", "Machine Learning").</li>
+                    <li><strong>Categorização Inteligente:</strong> Classifica automaticamente cada notícia em categorias como "Geral", "Novas Ferramentas", "Atualizações de Modelos" ou "Mercado".</li>
+                    <li><strong>Interface Integrada:</strong> Adiciona um menu personalizado "Pesquisar Notícias" diretamente na barra de ferramentas do Google Sheets.</li>
+                    <li><strong>Sanitização e Formatação:</strong> Remove duplicatas, formata datas para o padrão local e aplica formatação condicional visual para facilitar a leitura.</li>
+                </ul>
+                <br>
+                <strong>Impacto:</strong>
+                Transforma o processo manual de clipping de notícias em um fluxo de trabalho de um clique, centralizando informações cruciais para análise competitiva e atualização técnica.`,
+                technologies: ["Google Apps Script", "JavaScript", "Google Sheets API", "XML Service", "UrlFetchApp"],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Planilha de Resultados",
+                        description: "Exemplo da planilha formatada com as notícias categorizadas.",
+                        url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/Rastreador%20de%20Noticias%20planilha.png"
+                    },
+                    {
+                        title: "Menu de Busca",
+                        description: "Interface de integração no Google Sheets.",
+                        url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/Rastreador%20de%20Noticias%20busca.png"
+                    }
+                ]
+            }
         };
 
         // --- Inicialização ---
@@ -1254,7 +1319,7 @@
                 link.href = mailtoUrl;
                 // link.target = '_blank'; // Opcional, mas às vezes ajuda
                 link.click();
-                
+
                 // Feedback visual
                 submitBtn.disabled = true;
                 submitBtn.textContent = "Redirecionando...";
@@ -1391,10 +1456,10 @@
 
             // Categoria
             const categoryBadge = document.getElementById("modal-category");
-            categoryBadge.textContent = project.category === "python" ? "Python" : project.category === "vba" ? "VBA/Excel" : "Power BI / Looker";
+            categoryBadge.textContent = project.category === "python" ? "Python" : project.category === "vba" ? "VBA/Excel" : "Web / Scripting";
             categoryBadge.className = `badge ${project.category === "python" ? 'badge-default' : 'badge-secondary'} mb-2 capitalize`;
 
-            document.getElementById("modal-info-category").textContent = project.category === "python" ? "Desenvolvimento Python" : project.category === "vba" ? "Automação VBA" : "Business Intelligence";
+            document.getElementById("modal-info-category").textContent = project.category === "python" ? "Desenvolvimento Python" : project.category === "vba" ? "Automação VBA" : "Business Intelligence / Scripting";
 
             // Tecnologias
             const techContainer = document.getElementById("modal-technologies");
@@ -1484,6 +1549,7 @@
 </body>
 
 </html>
+
 
 
 
