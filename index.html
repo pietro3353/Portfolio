@@ -10,7 +10,7 @@
     <meta name="author" content="Pietro Lippolis" />
 
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -30,6 +30,7 @@
                 extend: {
                     fontFamily: {
                         sans: ["Inter", "sans-serif"],
+                        heading: ["Outfit", "sans-serif"],
                     },
                     colors: {
                         border: "hsl(var(--border))",
@@ -100,6 +101,15 @@
         };
     </script>
 
+    <script>
+        // Previne FOUC (Flash of Unstyled Content) verificando o tema ao carregar
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <style type="text/tailwindcss">
         @layer base {
         :root {
@@ -126,24 +136,24 @@
         }
 
         .dark {
-          --background: 220 40% 10%;
-          --foreground: 0 0% 95%;
-          --card: 220 35% 12%;
-          --card-foreground: 0 0% 95%;
-          --popover: 220 35% 12%;
-          --popover-foreground: 0 0% 95%;
+          --background: 220 25% 10%;
+          --foreground: 0 0% 98%;
+          --card: 220 25% 14%;
+          --card-foreground: 0 0% 98%;
+          --popover: 220 25% 14%;
+          --popover-foreground: 0 0% 98%;
           --primary: 222 79% 55%;
           --primary-foreground: 0 0% 98%;
-          --secondary: 220 30% 18%;
-          --secondary-foreground: 0 0% 95%;
-          --muted: 220 30% 18%;
-          --muted-foreground: 210 15% 65%;
+          --secondary: 220 25% 20%;
+          --secondary-foreground: 0 0% 98%;
+          --muted: 220 25% 20%;
+          --muted-foreground: 220 20% 65%;
           --accent: 17 95% 61%;
           --accent-foreground: 0 0% 98%;
-          --destructive: 0 72% 51%;
+          --destructive: 0 62.8% 30.6%;
           --destructive-foreground: 0 0% 98%;
-          --border: 220 30% 20%;
-          --input: 220 30% 20%;
+          --border: 220 25% 20%;
+          --input: 220 25% 20%;
           --ring: 222 79% 55%;
         }
       }
@@ -156,6 +166,9 @@
           @apply bg-background text-foreground;
           font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+          font-family: "Outfit", sans-serif;
         }
         html {
           scroll-behavior: smooth;
@@ -237,52 +250,61 @@
       /* Classes ShadCN UI recriadas com @apply */
       @layer components {
         .btn {
-          @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+          @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:-translate-y-0.5 hover:shadow-lg active:scale-95;
         }
         .btn-default {
-          @apply bg-primary text-primary-foreground hover:bg-primary/90;
+          @apply bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-primary/25;
         }
         .btn-outline {
-          @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+          @apply border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground;
         }
         .btn-ghost {
-          @apply hover:bg-accent hover:text-accent-foreground;
+          @apply hover:bg-accent hover:text-accent-foreground rounded-full;
         }
         .btn-lg {
-          @apply h-11 rounded-md px-8;
+          @apply h-12 px-8 text-base;
         }
         .btn-sm {
-          @apply h-9 rounded-md px-3;
+          @apply h-9 px-4;
         }
         .btn-icon {
-          @apply h-10 w-10;
+          @apply h-10 w-10 rounded-full;
         }
 
         .card {
-          @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+          @apply rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm text-card-foreground shadow-sm hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden;
+        }
+        
+        .card::before {
+          content: "";
+          @apply absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none;
+        }
+        
+        .card:hover::before {
+          @apply opacity-100;
         }
 
         .badge {
-          @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+          @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
         }
         .badge-default {
-          @apply border-transparent bg-primary text-primary-foreground;
+          @apply border-transparent bg-primary/10 text-primary hover:bg-primary/20;
         }
         .badge-secondary {
-          @apply border-transparent bg-secondary text-secondary-foreground;
+          @apply border-transparent bg-foreground/10 text-foreground hover:bg-foreground/20;
         }
         .badge-outline {
-          @apply text-foreground;
+          @apply text-foreground border-border/50 bg-background/50 backdrop-blur-sm;
         }
 
         .input {
-          @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+          @apply flex h-11 w-full rounded-lg border border-input bg-background/50 px-4 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200;
         }
         .textarea {
-          @apply flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+          @apply flex min-h-[120px] w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200;
         }
         .label {
-          @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+          @apply text-sm font-semibold text-foreground/80 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 block;
         }
       }
 
@@ -298,7 +320,7 @@
 <body class="antialiased">
 
     <header id="main-header"
-        class="fixed top-0 left-0 w-full bg-background/95 backdrop-blur-md border-b border-border z-50 transition-all">
+        class="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-xl border-b border-border/50 z-50 transition-all shadow-sm">
         <nav class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
@@ -307,37 +329,45 @@
                     </h2>
                 </div>
 
-                <ul class="hidden md:flex items-center gap-8" id="desktop-menu">
-                    <li>
-                        <button data-section="inicio" onclick="scrollToSection('inicio')"
-                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary">
-                            inicio
-                        </button>
-                    </li>
-                    <li>
-                        <button data-section="sobre" onclick="scrollToSection('sobre')"
-                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
-                            sobre
-                        </button>
-                    </li>
-                    <li>
-                        <button data-section="projetos" onclick="scrollToSection('projetos')"
-                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
-                            projetos
-                        </button>
-                    </li>
-                    <li>
-                        <button data-section="contato" onclick="scrollToSection('contato')"
-                            class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
-                            contato
-                        </button>
-                    </li>
-                </ul>
+                <div class="flex items-center gap-6">
+                    <ul class="hidden md:flex items-center gap-8" id="desktop-menu">
+                        <li>
+                            <button data-section="inicio" onclick="scrollToSection('inicio')"
+                                class="nav-link font-medium capitalize transition-colors relative pb-1 text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary">
+                                inicio
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="sobre" onclick="scrollToSection('sobre')"
+                                class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
+                                sobre
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="projetos" onclick="scrollToSection('projetos')"
+                                class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
+                                projetos
+                            </button>
+                        </li>
+                        <li>
+                            <button data-section="contato" onclick="scrollToSection('contato')"
+                                class="nav-link font-medium capitalize transition-colors relative pb-1 text-foreground hover:text-primary">
+                                contato
+                            </button>
+                        </li>
+                    </ul>
 
-                <button class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
-                    id="mobile-menu-toggle" aria-label="Toggle menu">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
+                    <button id="theme-toggle" class="p-2 text-foreground hover:text-primary transition-colors"
+                        aria-label="Alternar tema">
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    </button>
+
+                    <button class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+                        id="mobile-menu-toggle" aria-label="Toggle menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
         </nav>
 
@@ -374,11 +404,15 @@
     <main>
 
         <section id="inicio"
-            class="min-h-screen flex items-center pt-20 pb-16 bg-gradient-to-br from-background via-background to-primary/5">
-            <div class="container mx-auto px-4">
+            class="min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden">
+            <!-- Background moderno -->
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/15 via-background to-background -z-10"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4wNSkiLz48L3N2Zz4=')] dark:bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)] -z-10"></div>
+
+            <div class="container mx-auto px-4 relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-[1fr,auto] gap-12 items-center">
                     <div class="text-center lg:text-left">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight tracking-tight">
                             Olá, eu sou
                             <span class="text-primary">Pietro Lippolis</span>
                         </h1>
@@ -402,11 +436,11 @@
                     </div>
                     <div class="flex justify-center">
                         <div
-                            class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-2xl overflow-hidden">
+                            class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center shadow-2xl overflow-hidden p-1 group">
                             <!-- IMAGEM COM LINK GITHUB RAW E ALINHAMENTO CORRIGIDO -->
                             <img src="https://raw.githubusercontent.com/pietro3353/Portfolio/main/WhatsApp%20Image%202025-12-18%20at%2014.42.13.jpeg"
                                 alt="Foto de perfil de Pietro Lippolis"
-                                class="w-full h-full object-cover object-align-face"
+                                class="w-full h-full object-cover object-align-face rounded-full group-hover:scale-105 transition-transform duration-500"
                                 onerror="this.onerror=null; this.src='https://placehold.co/320x320/e2e8f0/64748b?text=Imagem+de+Perfil+Nao+Carregada';">
                         </div>
                     </div>
@@ -424,7 +458,7 @@
                 </h2>
                 <div class="max-w-4xl mx-auto mt-12">
                     <p class="text-lg text-center text-muted-foreground mb-12">
-                        Analista na Ekantika Consultoria com formação em Ciências Econômicas.
+                        AI Builder na B3 com formação em Ciências Econômicas.
                         Aplico Data Science e IA para otimizar processos e gerar relatórios,
                         desenvolvendo soluções de e dashboards estratégicos para tomada de decisão.
                     </p>
@@ -440,7 +474,7 @@
                                     Experiência Atual
                                 </h4>
                                 <p class="text-muted-foreground">
-                                    Ekantika Consultoria - Analista
+                                    B3 - AI Builder
                                 </p>
                             </div>
                         </div>
@@ -662,6 +696,37 @@
 
                     <!-- NOVO PROJETO ADICIONADO AQUI -->
                     <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
+                        data-category="powerbi" data-id="automacao-marketing-n8n">
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl">
+                                ⚙️
+                            </div>
+                            <span class="badge badge-secondary capitalize">n8n / IA</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-foreground">
+                            Automação de Marketing com n8n e IA Agent
+                        </h3>
+                        <p class="text-muted-foreground mb-4 flex-grow">
+                            Fluxo automatizado que monitora tendências em redes sociais, seleciona produtos do estoque e
+                            gera criativos de alta conversão usando IA.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="badge badge-outline text-xs">n8n</span>
+                            <span class="badge badge-outline text-xs">Google Gemini</span>
+                            <span class="badge badge-outline text-xs">Apify</span>
+                            <span class="badge badge-outline text-xs">Nuvemshop</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <button class="btn btn-default btn-sm flex-1"
+                                onclick="openProjectModal('automacao-marketing-n8n')">
+                                <i data-lucide="eye" class="w-4 h-4 mr-1"></i>
+                                Ver Detalhes
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border-border flex flex-col project-card"
                         data-category="powerbi" data-id="monitor-noticias-ia">
                         <div class="flex items-center justify-between mb-4">
                             <div
@@ -736,83 +801,48 @@
                         class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-primary rounded-full"></span>
                 </h2>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mt-12">
-
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-4">Vamos conversar!</h3>
-                        <p class="text-muted-foreground mb-8">
-                            Estou sempre aberto a novas oportunidades e colaborações. Entre
-                            em contato comigo através do formulário ou pelos canais abaixo.
+                <div class="max-w-5xl mx-auto mt-12">
+                    <div class="text-center mb-12">
+                        <h3 class="text-3xl font-bold mb-4">Vamos conversar!</h3>
+                        <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                            Estou sempre aberto a novas oportunidades, consultorias e colaborações. Escolha o canal de sua preferência.
                         </p>
-
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="mail" class="w-5 h-5 text-primary flex-shrink-0"></i>
-                                <a href="mailto:pietro.lippolis53@gmail.com" target="_blank" rel="noopener noreferrer"
-                                    class="text-foreground hover:text-primary transition-colors">
-                                    pietro.lippolis53@gmail.com
-                                </a>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="phone" class="w-5 h-5 text-primary flex-shrink-0"></i>
-                                <!-- Link WhatsApp atualizado -->
-                                <a href="https://wa.me/5511963981137" target="_blank" rel="noopener noreferrer"
-                                    class="text-foreground hover:text-primary transition-colors">
-                                    (11) 96398-1137
-                                </a>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="map-pin" class="w-5 h-5 text-primary flex-shrink-0"></i>
-                                <span class="text-foreground">São Paulo, SP</span>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <a href="https://www.linkedin.com/in/pietrolippolis" target="_blank"
-                                rel="noopener noreferrer"
-                                class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-accent transition-all hover:-translate-y-1 shadow-lg"
-                                aria-label="LinkedIn">
-                                <i data-lucide="linkedin" class="w-5 h-5"></i>
-                            </a>
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-                                class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-accent transition-all hover:-translate-y-1 shadow-lg"
-                                aria-label="GitHub">
-                                <i data-lucide="github" class="w-5 h-5"></i>
-                            </a>
-                        </div>
                     </div>
 
-
-                    <div class="card p-8 border-border shadow-lg">
-                        <form id="contact-form" class="space-y-6">
-                            <div>
-                                <label for="name" class="label">Nome</label>
-                                <input id="name" name="name" required class="input mt-2"
-                                    placeholder="Seu nome completo" />
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Email Card -->
+                        <a href="mailto:pietro.lippolis53@gmail.com" target="_blank" rel="noopener noreferrer" 
+                           class="card p-8 flex flex-col items-center text-center hover:-translate-y-2 hover:border-primary/50 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="mail" class="w-8 h-8"></i>
                             </div>
+                            <h4 class="text-xl font-semibold mb-2 text-foreground">Email</h4>
+                            <p class="text-muted-foreground mb-4 text-sm">Me mande uma mensagem detalhada</p>
+                            <span class="text-primary font-medium text-sm group-hover:underline mt-auto">Enviar Email &rarr;</span>
+                        </a>
 
-                            <div>
-                                <label for="email" class="label">Email</label>
-                                <input id="email" name="email" type="email" required class="input mt-2"
-                                    placeholder="seu@email.com" />
+                        <!-- WhatsApp Card -->
+                        <a href="https://wa.me/5511963981137" target="_blank" rel="noopener noreferrer" 
+                           class="card p-8 flex flex-col items-center text-center hover:-translate-y-2 hover:border-[#25D366]/50 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center text-[#25D366] mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="message-circle" class="w-8 h-8"></i>
                             </div>
+                            <h4 class="text-xl font-semibold mb-2 text-foreground">WhatsApp</h4>
+                            <p class="text-muted-foreground mb-4 text-sm">Para um contato rápido e direto</p>
+                            <span class="text-[#25D366] font-medium text-sm group-hover:underline mt-auto">Iniciar Chat &rarr;</span>
+                        </a>
 
-                            <div>
-                                <label for="subject" class="label">Assunto</label>
-                                <input id="subject" name="subject" required class="input mt-2"
-                                    placeholder="Assunto da mensagem" />
+                        <!-- LinkedIn Card -->
+                        <a href="https://www.linkedin.com/in/pietrolippolis" target="_blank" rel="noopener noreferrer" 
+                           class="card p-8 flex flex-col items-center text-center hover:-translate-y-2 hover:border-[#0077b5]/50 hover:shadow-lg transition-all duration-300 group">
+                            <div class="w-16 h-16 rounded-full bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] mb-6 group-hover:scale-110 transition-transform">
+                                <!-- Raw SVG para garantir o carregamento do ícone -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                             </div>
-
-                            <div>
-                                <label for="message" class="label">Mensagem</label>
-                                <textarea id="message" name="message" required class="textarea mt-2 min-h-[150px]"
-                                    placeholder="Escreva sua mensagem aqui..."></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-default w-full" id="contact-submit-btn">
-                                Enviar Mensagem
-                            </button>
-                        </form>
+                            <h4 class="text-xl font-semibold mb-2 text-foreground">LinkedIn</h4>
+                            <p class="text-muted-foreground mb-4 text-sm">Acompanhe minha trajetória</p>
+                            <span class="text-[#0077b5] font-medium text-sm group-hover:underline mt-auto">Conectar &rarr;</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -820,26 +850,26 @@
     </main>
 
 
-    <footer class="bg-foreground text-white py-8">
+    <footer class="bg-card border-t border-border py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-white/80" id="footer-year">
+                <p class="text-muted-foreground" id="footer-year">
                     © 2024 Pietro Lippolis. Todos os direitos reservados.
                 </p>
                 <div class="flex gap-6 flex-wrap justify-center">
                     <button onclick="scrollToSection('inicio')"
-                        class="text-white/80 hover:text-white transition-colors">
+                        class="text-muted-foreground hover:text-foreground transition-colors">
                         Início
                     </button>
-                    <button onclick="scrollToSection('sobre')" class="text-white/80 hover:text-white transition-colors">
+                    <button onclick="scrollToSection('sobre')" class="text-muted-foreground hover:text-foreground transition-colors">
                         Sobre
                     </button>
                     <button onclick="scrollToSection('projetos')"
-                        class="text-white/80 hover:text-white transition-colors">
+                        class="text-muted-foreground hover:text-foreground transition-colors">
                         Projetos
                     </button>
                     <button onclick="scrollToSection('contato')"
-                        class="text-white/80 hover:text-white transition-colors">
+                        class="text-muted-foreground hover:text-foreground transition-colors">
                         Contato
                     </button>
                 </div>
@@ -939,8 +969,8 @@
                                 </div>
                                 <div>
                                     <p class="text-muted-foreground mb-1">Status</p>
-                                    <span class="badge badge-default"
-                                        style="background-color: #16a34a;">Concluído</span>
+                                    <span class="badge border-transparent"
+                                        style="background-color: #16a34a; color: #ffffff;">Concluído</span>
                                 </div>
                             </div>
                         </div>
@@ -1244,6 +1274,39 @@
                         url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/Rastreador%20de%20Noticias%20busca.png"
                     }
                 ]
+            },
+            "automacao-marketing-n8n": {
+                title: "Automação de Marketing de Moda com n8n e IA",
+                category: "powerbi",
+                icon: "⚙️",
+                shortDescription: "Fluxo automatizado que monitora tendências em redes sociais, seleciona produtos do estoque via API e gera campanhas de alta conversão com edição de imagem por IA (Gemini).",
+                fullDescription: `Este projeto implementa uma automação de ponta a ponta para marketing digital de moda utilizando o <strong>n8n</strong> e a inteligência artificial do <strong>Google Gemini</strong>.<br><br>O fluxo monitora a concorrência, identifica tendências virais, seleciona automaticamente peças em estoque e gera criativos prontos para as redes sociais.<br><br>
+                <h3>Arquitetura do Fluxo:</h3>
+                <ul>
+                    <li><strong>Pesquisa de Tendências (Apify):</strong> Coleta as postagens mais recentes de perfis de concorrentes no Instagram.</li>
+                    <li><strong>Filtro Viral (JavaScript):</strong> Analisa e ordena as postagens coletadas, selecionando as principais tendências baseadas em engajamento.</li>
+                    <li><strong>Agente de IA (Gemini):</strong> Atua como estrategista e copywriter. Analisa a tendência, consulta a API da Nuvemshop para encontrar um produto similar em estoque, e elabora o prompt detalhado para edição da imagem e legendas com técnicas avançadas de copy.</li>
+                    <li><strong>Geração de Criativos (Gemini Image API):</strong> Edita a foto do produto, criando novos fundos hiper-realistas baseados na tendência e aplicando o branding da loja de forma natural.</li>
+                    <li><strong>Armazenamento (Google Drive/Sheets):</strong> Salva os arquivos (imagens e textos) na nuvem e registra um log com os resultados de cada execução.</li>
+                </ul>
+                <br>
+                <strong>Impacto e Vantagens:</strong><br>
+                Permite que a loja produza e adapte campanhas de marketing em questão de minutos, com custos operacionais drasticamente reduzidos, mantendo um padrão visual altamente atrativo e focado em engajamento instantâneo.`,
+                technologies: ["n8n", "Google Gemini", "Apify", "API Nuvemshop", "JavaScript", "Google Workspace"],
+                demoLink: "",
+                githubLink: "",
+                images: [
+                    {
+                        title: "Visão Geral do Fluxo n8n",
+                        description: "Estrutura visual dos nós conectando Apify, Agentes de IA e APIs do Google.",
+                        url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/Fluxo%20n8n.PNG"
+                    },
+                    {
+                        title: "Resultado do Agente de IA",
+                        description: "Saída estruturada com prompt de imagem, roteiro de reels e legenda persuasiva.",
+                        url: "https://raw.githubusercontent.com/pietro3353/Portfolio/main/Resultado%20n8n.jpg"
+                    }
+                ]
             }
         };
 
@@ -1251,6 +1314,21 @@
         document.addEventListener("DOMContentLoaded", () => {
             // Ativar Ícones Lucide
             lucide.createIcons();
+
+            // --- Lógica do Tema Noturno ---
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener("click", () => {
+                    const htmlElement = document.documentElement;
+                    if (htmlElement.classList.contains("dark")) {
+                        htmlElement.classList.remove("dark");
+                        localStorage.setItem("theme", "light");
+                    } else {
+                        htmlElement.classList.add("dark");
+                        localStorage.setItem("theme", "dark");
+                    }
+                });
+            }
 
             // Atualizar Ano do Rodapé
             document.getElementById("footer-year").textContent =
@@ -1297,43 +1375,7 @@
             // --- Lógica de Filtro de Projetos (REMOVIDA) ---
             // O bloco de lógica para filtrar projetos foi removido para exibir todos os projetos.
 
-            // --- Lógica do Formulário de Contato ---
-            const contactForm = document.getElementById("contact-form");
-            const submitBtn = document.getElementById("contact-submit-btn");
-
-            contactForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                if (submitBtn.disabled) return;
-
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const subject = document.getElementById("subject").value;
-                const message = document.getElementById("message").value;
-
-                // Cria o link mailto
-                const mailtoUrl = `mailto:pietro.lippolis53@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Nome: " + name + "\nEmail: " + email + "\n\n" + message)}`;
-
-                // Abre o cliente de email
-                // Hack para tentar contornar bloqueios de pop-up em iframes rigorosos
-                const link = document.createElement('a');
-                link.href = mailtoUrl;
-                // link.target = '_blank'; // Opcional, mas às vezes ajuda
-                link.click();
-
-                // Feedback visual
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Redirecionando...";
-
-                setTimeout(() => {
-                    showToast(
-                        "Redirecionando para seu Email",
-                        "Complete o envio através do seu aplicativo de email padrão."
-                    );
-                    contactForm.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = "Enviar Mensagem";
-                }, 1000);
-            });
+            // O formulário de contato foi removido, a seção de contato agora utiliza apenas os botões de link direto.
         });
 
         // --- Funções Auxiliares Globais ---
@@ -1549,7 +1591,6 @@
 </body>
 
 </html>
-
 
 
 
